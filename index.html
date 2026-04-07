@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multi-size ICO 產生器</title>
+    <style>
+      :root {
+        --bg: #f6f4ef;
+        --card: #ffffff;
+        --ink: #1f2937;
+        --muted: #6b7280;
+        --accent: #0f766e;
+        --accent-2: #115e59;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Segoe UI", "Noto Sans TC", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 20% 10%, #d1fae5 0%, transparent 35%),
+          radial-gradient(circle at 90% 80%, #bae6fd 0%, transparent 30%),
+          var(--bg);
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+
+      main {
+        width: min(760px, 100%);
+        background: var(--card);
+        border-radius: 18px;
+        padding: 28px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+      }
+
+      h1 {
+        margin-top: 0;
+        margin-bottom: 8px;
+        font-size: 1.7rem;
+      }
+
+      p {
+        margin-top: 0;
+        color: var(--muted);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+
+      input[type="file"] {
+        border: 1px solid #d1d5db;
+        border-radius: 10px;
+        padding: 8px;
+        background: #fff;
+      }
+
+      button {
+        border: 0;
+        border-radius: 999px;
+        padding: 10px 18px;
+        background: var(--accent);
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: var(--accent-2);
+      }
+
+      button:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+
+      #status {
+        margin-top: 14px;
+        min-height: 1.5em;
+      }
+
+      #preview {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .tile {
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 8px;
+        text-align: center;
+        font-size: 0.82rem;
+        color: #374151;
+        background: #fafafa;
+      }
+
+      .tile img {
+        width: 48px;
+        height: 48px;
+        object-fit: contain;
+        image-rendering: auto;
+        display: block;
+        margin: 0 auto 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>ICO 多尺寸輸出工具</h1>
+      <p>
+        上傳 72x72 的 .ico，輸出包含 16, 24, 32, 40, 48, 64, 96 的
+        <strong>Multi-size.ico</strong>
+      </p>
+
+      <div class="actions">
+        <input id="iconFile" type="file" accept=".ico,image/x-icon,image/vnd.microsoft.icon" />
+        <button id="buildBtn" disabled>產生 Multi-size.ico</button>
+      </div>
+
+      <div id="status"></div>
+      <div id="preview"></div>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

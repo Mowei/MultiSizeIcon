@@ -1,4 +1,4 @@
-const OUTPUT_SIZES = [16, 24, 32, 40, 48, 64, 96];
+const OUTPUT_SIZES = [16, 24, 32, 40, 48, 64, 96, 128, 256];
 
 const iconFileInput = document.getElementById("iconFile");
 const buildBtn = document.getElementById("buildBtn");
